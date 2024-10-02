@@ -1,4 +1,4 @@
-import 'package:bilhetinhos/env_vars.dart';
+import 'package:bilhetinhos/infra/env_vars.dart';
 import 'package:firebase_core/firebase_core.dart' show FirebaseOptions;
 import 'package:flutter/foundation.dart'
     show defaultTargetPlatform, kIsWeb, TargetPlatform;
