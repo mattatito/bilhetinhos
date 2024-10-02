@@ -4,8 +4,8 @@ name: Automated tests
 on: pull_request
 
 jobs:
-  build:
-    name: Build
+  analyze-and-test:
+    name: Analyze and Test
     runs-on: ubuntu-latest
 
     steps:
@@ -19,6 +19,9 @@ jobs:
 
       - name: Install dependencies
         run: flutter pub get
+
+      - name: Analyze project source
+        run: dart analyze
 
       - name: Run tests
         run: flutter test
