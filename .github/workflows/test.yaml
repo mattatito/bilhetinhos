@@ -4,8 +4,8 @@ name: Automated tests
 on: pull_request
 
 jobs:
-  build:
-    name: Build
+  analyze-and-test:
+    name: Analyze and Test
     runs-on: ubuntu-latest
 
     steps:

@@ -1,6 +1,10 @@
-import 'package:flutter/material.dart';
 
-void main() {
+import 'package:flutter/material.dart';
+import 'infra/firebase/firebase_configuration.dart';
+
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await FirebaseConfiguration.initFirebase();
   runApp(const MyApp());
 }
 
