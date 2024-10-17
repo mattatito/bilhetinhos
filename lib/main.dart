@@ -1,6 +1,7 @@
 
 import 'package:flutter/material.dart';
 import 'infra/firebase/firebase_configuration.dart';
+import 'modules/auth/presentation/pages/login_page.dart';
 import 'modules/core-ui/theme/theme.dart';
 
 void main() async {
@@ -16,10 +17,8 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Bilhetinhos',
-      theme: ThemeData(
-        colorScheme: MaterialTheme.lightScheme(),
-      ),
-      home: const MyHomePage(title: 'Bilhetinhos'),
+      theme: const MaterialTheme(TextTheme()).light(),
+      home: const LoginPage(),
     );
   }
 }
