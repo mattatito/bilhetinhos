@@ -18,7 +18,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Bilhetinhos',
       theme: const MaterialTheme(TextTheme()).light(),
-      home: const LoginPage(),
+      home: LoginPage(),
     );
   }
 }
