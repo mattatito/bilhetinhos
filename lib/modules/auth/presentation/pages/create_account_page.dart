@@ -20,7 +20,6 @@ class CreateAccountPage extends StatefulWidget {
 class _CreateAccountPageState extends State<CreateAccountPage> {
   final _formKey = GlobalKey<FormState>();
   final _passwordKey = GlobalKey<FormFieldState>();
-  final _confirmPasswordKey = GlobalKey<FormFieldState>();
 
   final registerViewModel = RegisterViewModel(
     CreateUserUseCaseImpl(
@@ -49,7 +48,7 @@ class _CreateAccountPageState extends State<CreateAccountPage> {
   String? _validateEmail(String? value) {
     final isEmpty = _verifyFieldIsEmpty(value);
 
-    final emailValidator = RegExp(r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$');
+    final emailValidator = RegExp(r'^[\w-]+@([\w-]+\.)+[\w-]{2,4}$');
 
     final isValidEmail = emailValidator.hasMatch(value!);
     final validEmailMessage = isValidEmail ? null : AppLocalizations.of(context)!.invalidEmail;
@@ -165,7 +164,6 @@ class _CreateAccountPageState extends State<CreateAccountPage> {
                 ),
                 Flexible(
                   child: TextFormField(
-                    key: _confirmPasswordKey,
                     decoration: InputDecoration(
                         border: const OutlineInputBorder(),
                         labelText: AppLocalizations.of(context)!.confirmPassword),
