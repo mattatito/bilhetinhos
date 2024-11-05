@@ -20,14 +20,6 @@ class LoginViewModel extends Cubit<LoginState>{
       emit(LoggedUser());
       return;
     }
-
-    switch(error){
-      case InvalidLoginCredentialsError _:
-        emit(ErrorLoginIn(message: "Login e/ou senha inválidos. Verifique suas credenciais e tente novamente."));
-      case AuthNetworkRequestFailedError _:
-        emit(ErrorLoginIn(message: "Problema de comunicação com o servidor. Verifique sua conexão com a internet e tente novamente."));
-      default:
-        emit(ErrorLoginIn(message: "Ocorreu um erro inesperado! Tente novamente."));
-    }
+    emit(ErrorLoginIn(error: error));
   }
 }

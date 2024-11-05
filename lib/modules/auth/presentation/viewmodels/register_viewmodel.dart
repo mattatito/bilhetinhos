@@ -21,15 +21,7 @@ class RegisterViewModel extends Cubit<RegisterState> {
       emit(RegisterSucceed());
       return;
     }
-
-    switch(error){
-      case EmailAlreadyInUseError _:
-        emit(RegisterError('O e-mail informado já está cadastrado. Por favor, tente com outro e-mail.'));
-      case AuthNetworkRequestFailedError _:
-        emit(RegisterError("Problema de comunicação com o servidor. Verifique sua conexão com a internet e tente novamente."));
-      default:
-        emit(RegisterError("Ocorreu um erro inesperado! Tente novamente."));
-    }
+    emit(RegisterError(error));
   }
 
   void changeUserNameValue(String value) {
