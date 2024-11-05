@@ -5,7 +5,7 @@ import 'package:bilhetinhos/modules/auth/domain/models/user_model.dart';
 import 'package:bilhetinhos/modules/auth/domain/repositories/user_authentication_repository.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
-class UserAuthenticationRepositoryImpl implements UserAuthenticationRepository {
+class UserAuthenticationRepositoryImpl implements UserRemoteAuthenticationRepository {
   final FirebaseAuth auth;
 
   UserAuthenticationRepositoryImpl(this.auth);
@@ -35,7 +35,7 @@ class UserAuthenticationRepositoryImpl implements UserAuthenticationRepository {
         return  (UserModel.empty(), AuthNetworkRequestFailedError());
       }
     }
-    return (UserModel.empty(), UnexpectedAuthError());
+    return (UserModel.empty(), InvalidLoginCredentialsError());
   }
 
   @override

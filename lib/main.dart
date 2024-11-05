@@ -1,7 +1,7 @@
 
+import 'package:bilhetinhos/app_routes.dart';
 import 'package:flutter/material.dart';
 import 'infra/firebase/firebase_configuration.dart';
-import 'modules/auth/presentation/pages/login_page.dart';
 import 'modules/core-ui/theme/theme.dart';
 
 void main() async {
@@ -18,7 +18,8 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Bilhetinhos',
       theme: const MaterialTheme(TextTheme()).light(),
-      home: LoginPage(),
+      routes: AppRoutesBuilder.routes(),
+      initialRoute: AppRoutes.loginPage,
     );
   }
 }
