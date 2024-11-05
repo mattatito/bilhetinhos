@@ -92,12 +92,28 @@ class _CreateAccountPageState extends State<CreateAccountPage> {
         key: _formKey,
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 24),
-          child: BlocListener(
+          child: BlocListener<RegisterViewModel, RegisterState>(
             bloc: registerViewModel,
             listener: (context, state) {
               if(state is RegisterSucceed){
                 ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('Conta criada com sucesso!')));
                 Navigator.of(context).pop();
+              }
+              if(state is RegisterError){
+                showAdaptiveDialog(
+                    context: context,
+                    builder: (context) {
+                      return AlertDialog(
+                          title: const Text('Ocorreu um problema.'),
+                          content: Text(state.errorMessage),
+                          actions: [
+                            TextButton(
+                                onPressed: () {
+                                  Navigator.of(context).pop();
+                                },
+                                child: const Text("Ok")),
+                          ]);
+                    });
               }
             },
             child: Column(

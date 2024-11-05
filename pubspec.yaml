@@ -3,7 +3,7 @@ description: "App de bilhetes"
 
 publish_to: 'none'
 
-version: 1.0.0+1
+version: 0.1.0+1
 
 environment:
   sdk: ^3.5.3
@@ -15,6 +15,7 @@ dependencies:
   firebase_core: ^3.6.0
   firebase_auth: ^5.3.1
   flutter_bloc: ^8.1.6
+  auto_size_text: ^3.0.0
 
 dev_dependencies:
   flutter_test:

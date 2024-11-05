@@ -3,21 +3,17 @@ class RegisterState {
   final String email;
   final String password;
   final String confirmPassword;
-  final String? errorMessage;
   final bool loading;
 
-  RegisterState({this.userName = '', this.email = '', this.password = '', this.confirmPassword = '', this.errorMessage, this.loading = false});
+  RegisterState({this.userName = '', this.email = '', this.password = '', this.confirmPassword = '', this.loading = false});
 
   RegisterState isLoading() => copyWith(loading: true);
-
-  RegisterState error(String message) => copyWith(loading: false, errorMessage: message);
 
   RegisterState copyWith({
     String? userName,
     String? email,
     String? password,
     String? confirmPassword,
-    String? errorMessage,
     bool? loading,
   }) {
     return RegisterState(
@@ -25,7 +21,6 @@ class RegisterState {
       email: email ?? this.email,
       password: password ?? this.password,
       confirmPassword: confirmPassword ?? this.confirmPassword,
-      errorMessage: errorMessage ?? this.errorMessage,
       loading: loading ?? this.loading,
     );
   }
@@ -33,4 +28,11 @@ class RegisterState {
 
 class RegisterSucceed extends RegisterState {
   RegisterSucceed();
+}
+
+class RegisterError extends RegisterState {
+
+  final String errorMessage;
+
+  RegisterError(this.errorMessage);
 }
