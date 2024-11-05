@@ -12,7 +12,7 @@ class AppRoutes {
 class AppRoutesBuilder {
   static Map<String, WidgetBuilder> routes() => {
     AppRoutes.loginPage: (context) => LoginPage(),
-    AppRoutes.registerPage: (context) => CreateAccountPage(),
+    AppRoutes.registerPage: (context) => const CreateAccountPage(),
     AppRoutes.homePage: (context) => const HomePage(),
   };
 
