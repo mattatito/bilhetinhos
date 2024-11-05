@@ -2,12 +2,15 @@ import 'package:bilhetinhos/app_routes.dart';
 import 'package:bilhetinhos/modules/auth/data/repositories/user_authentication_repository_impl.dart';
 import 'package:bilhetinhos/modules/auth/domain/use_cases/login_user_use_case.dart';
 import 'package:bilhetinhos/modules/auth/presentation/states/login_state.dart';
+import 'package:bilhetinhos/modules/auth/presentation/utils/dialog_error_message.dart';
 import 'package:bilhetinhos/modules/auth/presentation/viewmodels/login_viewmodel.dart';
+import 'package:bilhetinhos/modules/core-ui/widgets/dialogs/error_dialog.dart';
 import 'package:bilhetinhos/modules/core-ui/widgets/outline_text_field.dart';
 import 'package:bilhetinhos/modules/core-ui/widgets/primary_button.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class LoginPage extends StatelessWidget {
   final LoginViewModel loginViewModel = LoginViewModel(
@@ -27,23 +30,11 @@ class LoginPage extends StatelessWidget {
         child:  BlocListener<LoginViewModel, LoginState>(
           bloc: loginViewModel,
           listener: (context, state) {
+
             if (state is ErrorLoginIn) {
-              final value = state.message;
-              showAdaptiveDialog(
-                  context: context,
-                  builder: (context) {
-                    return AlertDialog(
-                        title: const Text('Ocorreu um problema.'),
-                        content: Text(value),
-                        actions: [
-                          TextButton(
-                              onPressed: () {
-                                Navigator.of(context).pop();
-                              },
-                              child: const Text("Ok")),
-                        ]);
-                  });
-            }
+              final message = errorMessageByAuthError(context, state.error);
+              showErrorDialog(context, message);
+            } 
             if(state is LoggedUser){
               Navigator.of(context).pushReplacementNamed(AppRoutes.homePage);
             }
@@ -51,18 +42,18 @@ class LoginPage extends StatelessWidget {
           child:  Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              const Flexible(
+              Flexible(
                 flex: 2,
                 child: Center(
                   child: Text(
-                    "Bilhetinhos",
-                    style: TextStyle(fontSize: 32),
+                    AppLocalizations.of(context)!.littleNote,
+                    style: const TextStyle(fontSize: 32),
                   ),
                 ),
               ),
               Flexible(
                 child: OutlineTextField(
-                  labelText: 'E-mail',
+                  labelText: AppLocalizations.of(context)!.email,
                   onChanged: (value) => loginViewModel.email.value = value ?? "",
                 ),
               ),
@@ -71,7 +62,7 @@ class LoginPage extends StatelessWidget {
               ),
               Flexible(
                 child: OutlineTextField(
-                  labelText: 'Senha',
+                  labelText: AppLocalizations.of(context)!.password,
                   obscure: true,
                   onChanged: (value) => loginViewModel.password.value = value ?? "",
                 ),
@@ -94,7 +85,7 @@ class LoginPage extends StatelessWidget {
                           child: CircularProgressIndicator(),
                         )
                             : Text(
-                          'Entrar',
+                          AppLocalizations.of(context)!.signIn,
                           style: TextStyle(color: colorScheme.onPrimaryContainer),
                         ),
                       );
@@ -112,7 +103,7 @@ class LoginPage extends StatelessWidget {
                     child: TextButton(
                       onPressed: () => Navigator.of(context).pushNamed(AppRoutes.registerPage),
                       child: Text(
-                        'Não possui conta? Crie uma clicando aqui',
+                        AppLocalizations.of(context)!.dontHaveAnAccountClickHere,
                         style: TextStyle(color: colorScheme.onPrimaryContainer),
                       ),
                     )),

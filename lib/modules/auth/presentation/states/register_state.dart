@@ -1,3 +1,5 @@
+import 'package:bilhetinhos/modules/auth/domain/errors/login_errors.dart';
+
 class RegisterState {
   final String userName;
   final String email;
@@ -32,7 +34,7 @@ class RegisterSucceed extends RegisterState {
 
 class RegisterError extends RegisterState {
 
-  final String errorMessage;
+  final AuthErrors error;
 
-  RegisterError(this.errorMessage);
+  RegisterError(this.error);
 }
