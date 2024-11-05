@@ -26,6 +26,7 @@ class UserAuthenticationRepositoryImpl implements UserRemoteAuthenticationReposi
         return (UserModel.empty(), InvalidLoginCredentialsError());
       }
 
+
       return (UserModel(email: user.email!, name: user.displayName!), NoAuthError());
     } on FirebaseAuthException catch (e) {
       if (e.code == firebaseInvalidLoginCredentialsCode) {

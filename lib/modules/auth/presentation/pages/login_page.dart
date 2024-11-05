@@ -44,6 +44,9 @@ class LoginPage extends StatelessWidget {
                         ]);
                   });
             }
+            if(state is LoggedUser){
+              Navigator.of(context).pushReplacementNamed(AppRoutes.homePage);
+            }
           },
           child:  Column(
             mainAxisAlignment: MainAxisAlignment.center,
@@ -64,7 +67,7 @@ class LoginPage extends StatelessWidget {
                 ),
               ),
               const SizedBox(
-                height: 20,
+                height: 16,
               ),
               Flexible(
                 child: OutlineTextField(

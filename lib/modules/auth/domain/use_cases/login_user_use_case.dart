@@ -17,6 +17,7 @@ class LoginUserUseCaseImpl implements LoginUserUseCase {
       if(email.trim().isEmpty|| password.trim().isEmpty){
         return InvalidLoginCredentialsError();
       }
+
       final (userModel, error) = await _loginUserRepository.loginUserWithEmailAndPassword(email, password);
       return error;
   }

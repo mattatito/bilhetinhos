@@ -10,14 +10,12 @@ class LoginViewModel extends Cubit<LoginState>{
 
   final ValueNotifier<String> email = ValueNotifier("");
   final ValueNotifier<String> password = ValueNotifier("");
-  final ValueNotifier<String> errorMessage = ValueNotifier("");
 
   LoginViewModel(this._loginUserUseCase) : super(LoginState());
 
   Future<void> loginUser() async {
     emit(LoadingLoginState());
     final error = await _loginUserUseCase.loginUser(email.value, password.value);
-
     if(error is NoAuthError){
       emit(LoggedUser());
       return;
