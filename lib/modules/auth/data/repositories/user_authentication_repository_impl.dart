@@ -44,6 +44,8 @@ class UserAuthenticationRepositoryImpl implements UserRemoteAuthenticationReposi
     try{
       final userCredential = await auth.createUserWithEmailAndPassword(email: email, password: password);
       await userCredential.user?.updateDisplayName(name);
+
+      return NoAuthError();
     } on FirebaseAuthException catch(e){
       if(e.code == firebaseEmailAlreadyInUse){
         return EmailAlreadyInUseError();
