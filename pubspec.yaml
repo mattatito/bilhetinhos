@@ -3,7 +3,7 @@ description: "App de bilhetes"
 
 publish_to: 'none'
 
-version: 1.0.0+1
+version: 0.1.0+1
 
 environment:
   sdk: ^3.5.3
@@ -13,11 +13,16 @@ dependencies:
     sdk: flutter
   cupertino_icons: ^1.0.8
   firebase_core: ^3.6.0
+  firebase_auth: ^5.3.1
+  flutter_bloc: ^8.1.6
+  auto_size_text: ^3.0.0
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
   flutter_lints: ^4.0.0
+  build_runner: ^2.4.13
+  mockito: ^5.4.4
 
 flutter:
   uses-material-design: true
