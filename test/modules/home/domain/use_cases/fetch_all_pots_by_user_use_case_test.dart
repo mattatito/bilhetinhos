@@ -15,13 +15,13 @@ import 'fetch_all_pots_by_user_use_case_test.mocks.dart';
 void main() {
   late MockUserDataRepository mockUserDataRepository;
   late MockPotRepository mockPotRepository;
-  late FetchAllPotsByUserUseCase fetchAllPotsByUserUseCase;
+  late FetchAllCurrentUserPotsUseCase fetchAllPotsByUserUseCase;
 
   setUpAll(() {
     mockUserDataRepository = MockUserDataRepository();
     mockPotRepository = MockPotRepository();
     fetchAllPotsByUserUseCase =
-        FetchAllPotsByUserUseCaseImpl(mockUserDataRepository, mockPotRepository);
+        FetchAllCurrentUserPotsUseCaseImpl(mockUserDataRepository, mockPotRepository);
   });
 
   group('Given logged user', () {
