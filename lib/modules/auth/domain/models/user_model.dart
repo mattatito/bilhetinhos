@@ -1,8 +1,14 @@
-class UserModel {
+class LoginUserModel {
   final String name;
   final String email;
 
-  factory UserModel.empty() => UserModel(name: "", email: "");
+  factory LoginUserModel.empty() => LoginUserModel(name: "", email: "");
 
-  UserModel({required this.name,required this.email});
+  LoginUserModel({required this.name,required this.email});
+}
+
+class UserDataModel {
+  final String userId;
+
+  UserDataModel({required this.userId});
 }

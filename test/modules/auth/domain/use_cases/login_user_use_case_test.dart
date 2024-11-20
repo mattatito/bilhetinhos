@@ -25,7 +25,7 @@ void main() {
   });
 
   test('Should return no error when user login successfully', () async {
-    final loginResponse = (UserModel(name: 'name', email: 'email'), NoAuthError());
+    final loginResponse = (LoginUserModel(name: 'name', email: 'email'), NoAuthError());
     when(authRepository.loginUserWithEmailAndPassword(any, any)).thenAnswer((_) async => loginResponse);
 
     final result = await loginUserUseCase.loginUser("user", "email");

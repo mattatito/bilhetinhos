@@ -15,7 +15,7 @@ class UserAuthenticationRepositoryImpl implements UserRemoteAuthenticationReposi
   static const firebaseNetworkRequestFailed = 'network-request-failed';
 
   @override
-  Future<(UserModel, AuthErrors)> loginUserWithEmailAndPassword(
+  Future<(LoginUserModel, AuthErrors)> loginUserWithEmailAndPassword(
       String email, String password) async {
     try {
       final userCredentials =
@@ -23,20 +23,20 @@ class UserAuthenticationRepositoryImpl implements UserRemoteAuthenticationReposi
       final user = userCredentials.user;
 
       if (user == null || user.displayName == null || user.email == null) {
-        return (UserModel.empty(), InvalidLoginCredentialsError());
+        return (LoginUserModel.empty(), InvalidLoginCredentialsError());
       }
 
 
-      return (UserModel(email: user.email!, name: user.displayName!), NoAuthError());
+      return (LoginUserModel(email: user.email!, name: user.displayName!), NoAuthError());
     } on FirebaseAuthException catch (e) {
       if (e.code == firebaseInvalidLoginCredentialsCode) {
-        return (UserModel.empty(), InvalidLoginCredentialsError());
+        return (LoginUserModel.empty(), InvalidLoginCredentialsError());
       }
       if(e.code == firebaseNetworkRequestFailed){
-        return  (UserModel.empty(), AuthNetworkRequestFailedError());
+        return  (LoginUserModel.empty(), AuthNetworkRequestFailedError());
       }
     }
-    return (UserModel.empty(), InvalidLoginCredentialsError());
+    return (LoginUserModel.empty(), InvalidLoginCredentialsError());
   }
 
   @override

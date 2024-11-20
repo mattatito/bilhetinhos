@@ -25,8 +25,9 @@ import 'package:mockito/mockito.dart' as _i1;
 // ignore_for_file: camel_case_types
 // ignore_for_file: subtype_of_sealed_class
 
-class _FakeUserModel_0 extends _i1.SmartFake implements _i2.UserModel {
-  _FakeUserModel_0(
+class _FakeLoginUserModel_0 extends _i1.SmartFake
+    implements _i2.LoginUserModel {
+  _FakeLoginUserModel_0(
     Object parent,
     Invocation parentInvocation,
   ) : super(
@@ -51,21 +52,12 @@ class _FakeAuthErrors_1 extends _i1.SmartFake implements _i3.AuthErrors {
 class MockUserRemoteAuthenticationRepository extends _i1.Mock
     implements _i4.UserRemoteAuthenticationRepository {
   @override
-  _i5.Future<(_i2.UserModel, _i3.AuthErrors)> loginUserWithEmailAndPassword(
+  _i5.Future<(_i2.LoginUserModel, _i3.AuthErrors)>
+      loginUserWithEmailAndPassword(
     String? email,
     String? password,
   ) =>
-      (super.noSuchMethod(
-        Invocation.method(
-          #loginUserWithEmailAndPassword,
-          [
-            email,
-            password,
-          ],
-        ),
-        returnValue: _i5.Future<(_i2.UserModel, _i3.AuthErrors)>.value((
-          _FakeUserModel_0(
-            this,
+          (super.noSuchMethod(
             Invocation.method(
               #loginUserWithEmailAndPassword,
               [
@@ -73,42 +65,53 @@ class MockUserRemoteAuthenticationRepository extends _i1.Mock
                 password,
               ],
             ),
-          ),
-          _FakeAuthErrors_1(
-            this,
-            Invocation.method(
-              #loginUserWithEmailAndPassword,
-              [
-                email,
-                password,
-              ],
-            ),
-          )
-        )),
-        returnValueForMissingStub:
-            _i5.Future<(_i2.UserModel, _i3.AuthErrors)>.value((
-          _FakeUserModel_0(
-            this,
-            Invocation.method(
-              #loginUserWithEmailAndPassword,
-              [
-                email,
-                password,
-              ],
-            ),
-          ),
-          _FakeAuthErrors_1(
-            this,
-            Invocation.method(
-              #loginUserWithEmailAndPassword,
-              [
-                email,
-                password,
-              ],
-            ),
-          )
-        )),
-      ) as _i5.Future<(_i2.UserModel, _i3.AuthErrors)>);
+            returnValue:
+                _i5.Future<(_i2.LoginUserModel, _i3.AuthErrors)>.value((
+              _FakeLoginUserModel_0(
+                this,
+                Invocation.method(
+                  #loginUserWithEmailAndPassword,
+                  [
+                    email,
+                    password,
+                  ],
+                ),
+              ),
+              _FakeAuthErrors_1(
+                this,
+                Invocation.method(
+                  #loginUserWithEmailAndPassword,
+                  [
+                    email,
+                    password,
+                  ],
+                ),
+              )
+            )),
+            returnValueForMissingStub:
+                _i5.Future<(_i2.LoginUserModel, _i3.AuthErrors)>.value((
+              _FakeLoginUserModel_0(
+                this,
+                Invocation.method(
+                  #loginUserWithEmailAndPassword,
+                  [
+                    email,
+                    password,
+                  ],
+                ),
+              ),
+              _FakeAuthErrors_1(
+                this,
+                Invocation.method(
+                  #loginUserWithEmailAndPassword,
+                  [
+                    email,
+                    password,
+                  ],
+                ),
+              )
+            )),
+          ) as _i5.Future<(_i2.LoginUserModel, _i3.AuthErrors)>);
 
   @override
   _i5.Future<_i3.AuthErrors?> createUser(
